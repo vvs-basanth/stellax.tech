@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "export": "next export",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,17 +12,34 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.4"
+    "next": "15.1.4",
+    "@floating-ui/react-dom": "^2.1.1",
+    "classnames": "^2.5.1",
+    "compressorjs": "^1.2.1",
+    "postcss": "^8.4.39",
+    "postcss-preset-env": "^9.5.15",
+    "prismjs": "^1.29.0",
+    "react-icons": "^5.2.1",
+    "sass": "^1.77.6",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@csstools/postcss-global-data": "^2.1.1",
     "typescript": "^5",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.2",
     "postcss": "^8",
+    "postcss-custom-media": "^10.0.7",
+    "postcss-flexbugs-fixes": "^5.0.2",
     "tailwindcss": "^3.4.1",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
     "@eslint/eslintrc": "^3"
+  },
+  "overrides": {
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.2"
   }
 }
