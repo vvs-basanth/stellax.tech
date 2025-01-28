@@ -5,7 +5,7 @@ import { PriceAmount } from '@/components/home/pricing/price-amount';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { PriceTitle } from '@/components/home/pricing/price-title';
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '@/components/ui/seperator';
 import { FeaturedCardGradient } from '@/components/gradients/featured-card-gradient';
 import Link from 'next/link';
 
