@@ -1,54 +1,23 @@
 import { type CookieOptions, createServerClient } from '@supabase/ssr';
 import { type NextRequest, NextResponse } from 'next/server';
 
+// Function to update the session
 export async function updateSession(request: NextRequest) {
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
-  });
+  let response = NextResponse.next();
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    'https://fanjxyagrnrbqqkgvxwx.supabase.co', // Supabase URL
+    'eyJhbGci0iJIUzI1NiIsInR5cCIkpXVCJ9.eyJpc3Mi0iJzdXBh', // Supabase Anon Key
     {
       cookies: {
         get(name: string) {
           return request.cookies.get(name)?.value;
         },
         set(name: string, value: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          });
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          });
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          });
+          response.cookies.set(name, value, options);
         },
         remove(name: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          });
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          });
-          response.cookies.set({
-            name,
-            value: '',
-            ...options,
-          });
+          response.cookies.set(name, '', { ...options, maxAge: 0 });
         },
       },
     },
@@ -58,3 +27,13 @@ export async function updateSession(request: NextRequest) {
 
   return response;
 }
+
+// Export the middleware function
+export async function middleware(request: NextRequest) {
+  return await updateSession(request);
+}
+
+// Middleware configuration to specify routes to protect
+export const config = {
+  matcher: ['/path/to/protect'], // Define the routes where you want to apply the middleware
+};
